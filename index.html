@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="datatables/datatables.min.css" />
+    <link rel="stylesheet" href="datatables-ext/datatables.ext.css" />
+    <title>Datatables Demo</title>
+  </head>
+  <body style="max-width: 600px;">
+    <h1>Datatables Demo</h1>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+    </table>
+    <script src="datatables/jquery-3.4.1.min.js"></script>
+    <script src="datatables/datatables.min.js"></script>
+    <script src="datatables-ext/datatables.ext.js"></script>
+    <script>
+      jQuery(document).ready(function($) {
+        loadGrid({
+          el: "#grid",
+          processing: true,
+          serverSide: true,
+          deferRender: true,
+          searching: true,
+          order: [],
+          orderCellsTop: true,
+          modeSelect: "single",
+          ajax: {
+            url: "http://localhost:3000/server.php",
+            method: "post",
+          },
+          columns: [
+            {
+              data: "name",
+              name: "string",
+            },
+            {
+              data: "email",
+              name: "string",
+            },
+          ],
+        });
+      });
+    </script>
+  </body>
+</html>
