@@ -73,6 +73,10 @@ jQuery(document).ready(function($) {
 $datatables = new Datatables();
 
 function queryData($query) {
+
+  // example:
+  // SELECT * FROM USERS WHERE $query
+
   $source = [
     [
       "id" => 1,
