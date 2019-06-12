@@ -63,28 +63,3 @@ class Datatables {
     ];
   }
 }
-
-$datatables = new Datatables();
-
-function queryData($query) {
-  $source = [
-    [
-      "id" => 1,
-      "name" => "Leanne Graham",
-      "username" => "Bret",
-      "email" => "Sincere@april.biz",
-      "phone" => "1-770-736-8031 x56442",
-      "website" => "hildegard.org",
-    ]
-  ];
-
-  return $source;
-}
-
-if (isset($_POST)) {
-  $data = queryData($datatables->filter($_POST));
-  $result = $datatables->format($data, $_POST);
-  header("Access-Control-Allow-Origin: *");
-  header('Content-Type: application/json;');
-  echo json_encode($result);
-}
