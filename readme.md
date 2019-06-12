@@ -96,6 +96,8 @@ $data = queryData($datatables->filter($_POST));
 
 // format data for datatables
 $result = $datatables->format($data, $_POST);
+
+// set header
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json;');
 
