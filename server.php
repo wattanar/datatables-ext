@@ -54,6 +54,18 @@ class Datatables {
         krsort($data);
       }
     }
+    
+    if (!isset($search['draw'])) {
+			$search['draw'] = 1;
+		}
+
+		if (!isset($search['start'])) {
+			$search['start'] = 0;
+		}
+
+		if (!isset($search['length'])) {
+			$search['length'] = 10;
+		}
   
     return [
       'draw' => (int)$search['draw'],
