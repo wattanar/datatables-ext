@@ -33,7 +33,7 @@ class Datatables {
     }
   }
 
-  function field($col, $filter) {
+  public function field($col, $filter) {
     if ($filter !== null) {
       if (isset($filter[$col])) {
         return $filter[$col];
@@ -45,7 +45,7 @@ class Datatables {
     }
   }
 
-  function format($data, $search) {
+  public function format($data, $search) {
 
     if ( isset($search['order']) ) {
       if ($search['order'][0]['dir'] === 'asc') {
