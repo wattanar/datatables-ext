@@ -4,6 +4,12 @@ function loadGrid(options) {
   $(options.el + " thead tr:eq(0)")
     .clone()
     .appendTo(options.el + " thead");
+  
+  if ($(options.el + " thead tr").length > 2) {
+    $(options.el + " thead tr")
+      .eq(2)
+      .remove();
+  }
 
   var table = $(options.el).DataTable(options);
 
