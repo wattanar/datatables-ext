@@ -41,8 +41,25 @@ jQuery(document).ready(function($) {
     el: "#grid",
     dom: 'Bfrtip',
     buttons: [
-      'selectAll',
-      'selectNone'
+      {
+        extend: 'selectAll',
+        text: 'เลือกทั้งหมด'
+      },
+      {
+        extend: 'selectNone',
+        text: 'ไม่เลือกทั้งหมด'
+      },
+      {
+        text: 'บันทึก',
+        action: function ( e, dt, node, config ) {
+          var rowdata = dt.rows( '.selected', { selected: true } ).data();
+          if (typeof rowdata[0] !== 'undefined')  {
+            console.log(rowdata);
+          } else {
+            alert("กรุณาเลือกข้อมูล!");
+          }
+        }
+      }
     ],
     processing: true,
     serverSide: true,
