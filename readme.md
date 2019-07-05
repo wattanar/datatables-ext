@@ -45,7 +45,10 @@ jQuery(document).ready(function($) {
     searching: true,
     order: [],
     orderCellsTop: true,
-    modeSelect: "single",
+    destroy: true,
+    select: {
+      style: 'single'
+    },
     ajax: {
       url: "http://localhost:3000/server.php",
       method: "post",
