@@ -39,6 +39,11 @@ Javascript
 jQuery(document).ready(function($) {
   loadGrid({
     el: "#grid",
+    dom: 'Bfrtip',
+    buttons: [
+      'selectAll',
+      'selectNone'
+    ],
     processing: true,
     serverSide: true,
     deferRender: true,
