@@ -69,21 +69,15 @@ jQuery(document).ready(function($) {
     orderCellsTop: true,
     destroy: true,
     select: {
-      style: 'single'
+      style: 'single' // single, multi
     },
     ajax: {
-      url: "http://localhost:3000/server.php",
+      url: "YOUR_API_URL",
       method: "post",
     },
     columns: [
-      {
-        data: "name",
-        name: "string",
-      },
-      {
-        data: "email",
-        name: "string",
-      },
+      { data: "name" },
+      { data: "email" },
     ],
   });
 });
