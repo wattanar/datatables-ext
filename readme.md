@@ -8,7 +8,7 @@
 - ~~dropdown filter~~
 - ~~checkbox filter~~
 
-## Client
+## Client side
 
 HTML
 
@@ -40,27 +40,7 @@ jQuery(document).ready(function($) {
   loadGrid({
     el: "#grid",
     dom: 'Bfrtip',
-    buttons: [
-      {
-        extend: 'selectAll',
-        text: 'เลือกทั้งหมด'
-      },
-      {
-        extend: 'selectNone',
-        text: 'ไม่เลือกทั้งหมด'
-      },
-      {
-        text: 'บันทึก',
-        action: function ( e, dt, node, config ) {
-          var rowdata = dt.rows( '.selected', { selected: true } ).data();
-          if (typeof rowdata[0] !== 'undefined')  {
-            console.log(rowdata);
-          } else {
-            alert("กรุณาเลือกข้อมูล!");
-          }
-        }
-      }
-    ],
+    buttons: [],
     processing: true,
     serverSide: true,
     deferRender: true,
@@ -68,9 +48,6 @@ jQuery(document).ready(function($) {
     order: [],
     orderCellsTop: true,
     destroy: true,
-    select: {
-      style: 'single' // single, multi
-    },
     ajax: {
       url: "YOUR_API_URL",
       method: "post",
@@ -83,7 +60,61 @@ jQuery(document).ready(function($) {
 });
 ```
 
-## Server
+## Add filter
+
+```javascript
+initComplete: function (settings, json) {
+    $("#" + settings.sTableId + " thead tr:eq(1) th").each(function (i) {
+        $(this).html('<input type="text" style="width: 100%;" />');
+        $("input", this).on("keyup change", function (e) {
+            if ($("#" + settings.sTableId).DataTable().column(i).search() !== this.value) {
+                if (e.which === 13 || this.value === "") {
+                    $("#" + settings.sTableId).DataTable()
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                }
+            }
+        });
+    });
+}
+```
+
+## Row selection
+
+```javascript
+select: {
+  style: 'single' // single or multi
+},
+```
+
+## Add button
+
+```javascript
+buttons: [
+  {
+    extend: 'selectAll',
+    text: 'เลือกทั้งหมด'
+  },
+  {
+    extend: 'selectNone',
+    text: 'ไม่เลือกทั้งหมด'
+  },
+  {
+    text: 'บันทึก',
+    action: function ( e, dt, node, config ) {
+      var rowdata = dt.rows( '.selected', { selected: true } ).data();
+      if (typeof rowdata[0] !== 'undefined')  {
+        console.log(rowdata);
+      } else {
+        alert("กรุณาเลือกข้อมูล!");
+      }
+    }
+  }
+],
+```
+
+## Server side 
 
 ```php
 <?php
