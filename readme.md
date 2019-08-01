@@ -37,8 +37,7 @@ Javascript
 
 ```javascript
 jQuery(document).ready(function($) {
-  loadGrid({
-    el: "#grid",
+  $("#grid").DataTable({
     dom: 'Bfrtip',
     buttons: [],
     processing: true,
