@@ -17,12 +17,12 @@ HTML
 <link rel="stylesheet" href="datatables/datatables.min.css" />
 <link rel="stylesheet" href="datatables-ext/datatables.ext.css" />
 
-<!-- HTML Table -->
-<table id="grid">
+<!-- HTML Table (if use with bootstrap css table class be like this.)-->
+<table id="grid" class="table table-striped table-condensed" style="width: 100%;">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th>ID</th>
+      <th>USERNAME</th>
     </tr>
   </thead>
 </table>
@@ -36,55 +36,32 @@ HTML
 Javascript
 
 ```javascript
-jQuery(document).ready(function($) {
-  $("#grid").DataTable({
-    dom: 'Bfrtip',
-    buttons: [],
-    processing: true,
-    serverSide: true,
-    deferRender: true,
-    searching: true,
-    order: [],
-    orderCellsTop: true,
-    destroy: true,
-    ajax: {
-      url: "YOUR_API_URL",
-      method: "post",
+loadGrid({
+  el: "#grid",
+  dom: "Bfrtip",
+  buttons: [],
+  processing: true,
+  serverSide: true,
+  deferRender: true,
+  searching: true,
+  order: [],
+  orderCellsTop: true,
+  destroy: true,
+  select: {
+    style: "single",
+  },
+  ajax: {
+    url: "/api/user",
+    method: "post",
+    data: {
+      grid: true,
     },
-    columns: [
-      { data: "name" },
-      { data: "email" },
-    ],
-  });
+  },
+  columns: [
+    { data: "ID" },
+    { data: "USERNAME" }
+  ],
 });
-```
-
-## Add filter
-
-```javascript
-initComplete: function (settings, json) {
-    $("#" + settings.sTableId + " thead tr:eq(1) th").each(function (i) {
-        $(this).html('<input type="text" style="width: 100%;" />');
-        $("input", this).on("keyup change", function (e) {
-            if ($("#" + settings.sTableId).DataTable().column(i).search() !== this.value) {
-                if (e.which === 13 || this.value === "") {
-                    $("#" + settings.sTableId).DataTable()
-                        .column(i)
-                        .search(this.value)
-                        .draw();
-                }
-            }
-        });
-    });
-}
-```
-
-## Row selection
-
-```javascript
-select: {
-  style: 'single' // single or multi
-},
 ```
 
 ## Add button
