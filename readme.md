@@ -18,7 +18,7 @@ HTML
 <link rel="stylesheet" href="datatables-ext/datatables.ext.css" />
 
 <!-- HTML Table (if use with bootstrap css table class be like this.)-->
-<table id="grid" class="table table-striped table-condensed" style="width: 100%;">
+<table id="grid" class="table table-striped table-bordered table-hover table-condensed table-nowrap" style="width:100%;">
   <thead>
     <tr>
       <th>ID</th>
