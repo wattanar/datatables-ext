@@ -38,8 +38,6 @@ Javascript
 ```javascript
 loadGrid({
   el: "#grid",
-  dom: "Bfrtip",
-  buttons: [],
   processing: true,
   serverSide: true,
   deferRender: true,
@@ -51,15 +49,19 @@ loadGrid({
     style: "single",
   },
   ajax: {
-    url: "/api/user",
-    method: "post",
-    data: {
-      grid: true,
-    },
+    url: 'YOUR_URL',
+    method: 'post'
   },
+  fnDrawCallback: function(settings, json) {},
+  columnDefs: [
+    {
+      render: function(data, type, row) {}, 
+      targets: 0
+    }
+  ],
   columns: [
-    { data: "ID" },
-    { data: "USERNAME" }
+    { data: "Id" },
+    { data: "Name" }
   ],
 });
 ```
